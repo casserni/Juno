@@ -1,27 +1,33 @@
+const BASE_URL = 'https://api.fixer.io/'
+
+let fetchData = (relativeURL) =>{
+  return new Promise((resolve, reject) => {
+    fetch(`${BASE_URL}${relativeURL}`)
+    .then(response => {
+      resolve(response.json());
+    })
+  })
+}
+
 export const resolvers = {
   Query: {
     currencies: () => {
-      return new Promise((resolve, reject) => {
-        fetch('https://api.fixer.io/latest?base=USD')
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} ($response.statusText)`,
-              error = new Error(errorMessage);
-            throw(error);
-          }
-        })
-        .then(response => {
-          resolve(response.json());
-        })
-        .catch(error => reject(Error(`Error in fetch: ${error.message}`)));
-      })
-      .then(data => {
+      return new Promise((resolve, reject)=>{
+        fetchData('latest?base=USD')
+        .then(data => {
           let currencies = Object.keys(data.rates)
           currencies.push('USD')
-          return currencies.sort()
+          resolve(currencies.sort())
+        })
       });
     },
+    rate: () => {
+      return new Promise((resolve, reject)=> {
+        fetchData(`latest?base=USD&symbols=EUR`)
+        .then(data => {
+          resolve(data.rates['EUR'])
+        })
+      })
+    }
   },
 };

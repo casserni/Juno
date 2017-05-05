@@ -34,7 +34,7 @@
     "webpack": "^1.13.3"
   },
   "scripts": {
-    "start": "nodemon app.js --exec babel-node"
+    "start": "nodemon index.js --exec babel-node"
   },
   "main": "index.js",
   "license": "ISC"

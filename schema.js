@@ -2,14 +2,10 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { resolvers } from './resolvers';
 
 const typeDefs =`
-type Currency {
-  id: ID!
-  name: String
-}
-
 type Query {
   date: String
   currencies:[String]
+  rate: Float
 }
 `;
 
