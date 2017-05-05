@@ -1,5 +1,8 @@
-var restify = require('restify');
-var builder = require('botbuilder');
+import restify from 'restify'
+import builder from 'botbuilder'
+import { graphql } from 'graphql'
+import 'isomorphic-fetch'
+import { schema } from './schema'
 
 //=========================================================
 // Bot Setup
@@ -51,7 +54,14 @@ intents.matches(/^help/i, [
 
 intents.matches(/^list currencies/i, [
   function (session) {
-    session.beginDialog('/help');
+    let response = ``
+    var query = '{ currencies }';
+    graphql(schema, query).then(result => {
+      result.data.currencies.forEach((currency)=>{
+        response += `- ${currency}\n`
+      });
+      session.send(response)
+    });
   }
 ]);
 
