@@ -1,0 +1,37 @@
+{
+  "author": "Nicholas Cassera",
+  "name": "juno",
+  "version": "1.0.0",
+  "description": "currency exchange bot",
+  "dependencies": {
+    "botbuilder": "^3.7.0",
+    "localtunnel": "^1.8.2",
+    "restify": "^4.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-runtime": "^6.22.0",
+    "babel-watch": "^2.0.3",
+    "dotenv-cli": "^1.1.1",
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "localtunnel": "^1.8.2",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^3.1.2",
+    "pm2": "^2.4.5",
+    "webpack": "^1.13.3"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "index.js",
+  "license": "ISC"
+}
