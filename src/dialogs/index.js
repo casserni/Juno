@@ -1,34 +1,13 @@
-import restify from 'restify'
-import builder from 'botbuilder'
+import bot from '../controllers/bot'
+import builder from 'botbuilder';
 import { graphql } from 'graphql'
+import { schema } from '../../schema'
 import 'isomorphic-fetch'
-import { schema } from './schema'
 
-//=========================================================
-// Bot Setup
-//=========================================================
-
-// Setup Restify Server
-var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-   console.log('%s listening to %s', server.name, server.url);
-});
-
-// Create chat bot
-var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
-});
-var bot = new builder.UniversalBot(connector);
-server.post('/api/messages', connector.listen());
-
-//=========================================================
-// Bots Dialogs
-//=========================================================
-var intents = new builder.IntentDialog();
+let intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-var counter = 0
+let counter = 0
 intents.onDefault([
     function (session, args, next) {
         if (!session.userData.name) {
@@ -55,7 +34,7 @@ intents.matches(/^help/i, [
 intents.matches(/^list currencies/i, [
   function (session) {
     let response = ``
-    var query = '{ currencies }';
+    let query = '{ currencies }';
     graphql(schema, query).then(result => {
       result.data.currencies.forEach((currency)=>{
         response += `- ${currency}\n`
@@ -64,6 +43,15 @@ intents.matches(/^list currencies/i, [
     });
   }
 ]);
+
+intents.matches(/^erb/i,[
+  function (session) {
+    let query = `{ rate }`
+    graphql(schema, query).then(result => {
+      session.send(result.data.rate.toString())
+    })
+  }
+])
 
 bot.dialog('/profile', [
     function (session) {
