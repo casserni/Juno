@@ -27,11 +27,17 @@
     "eslint": "^3.14.1",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "localtunnel": "^1.8.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^3.1.2",
     "pm2": "^2.4.5",
     "webpack": "^1.13.3"
+  },
+  "now": {
+    "env": {
+      "MICROSOFT_APP_ID": "@microsoft_app_id",
+      "MICROSOFT_APP_PASSWORD": "@microsoft_app_password",
+      "PORT": "80"
+    }
   },
   "scripts": {
     "start": "nodemon index.js --exec babel-node"
