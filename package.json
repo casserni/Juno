@@ -10,7 +10,8 @@
     "graphql-tools": "^0.11.0",
     "isomorphic-fetch": "^2.2.1",
     "localtunnel": "^1.8.2",
-    "restify": "^4.3.0"
+    "restify": "^4.3.0",
+    "utu": "^0.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -40,7 +41,9 @@
     }
   },
   "scripts": {
-    "start": "nodemon index.js --exec babel-node"
+    "start:sh": "sh run.sh",
+    "start:tunnel": "lt -h https://bot-tunnel.com -s juno -p 3000",
+    "start": "nodemon src/index.js --exec babel-node"
   },
   "main": "index.js",
   "license": "ISC"
