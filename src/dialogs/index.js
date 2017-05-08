@@ -35,6 +35,7 @@ intents.matches(/^list currencies/i, [
     fetchCurrencies()
     .then(response => {
       session.send(response)
+      session.message.utu.event('List Currencies');
     })
   }
 ]);
@@ -61,12 +62,14 @@ bot.dialog('/profile', [
 bot.dialog('/help',[
   function (session) {
     session.send(
-`
-Here are a few of the things that I can help you with:
-- list currencies
-- help
-`
+      `
+        Here are a few of the things that I can help you with:
+        - list currencies
+        - help
+      `
     );
+    console.log(JSON.stringify(session.message.utu, null, 2))
+    session.message.utu.event('Help').catch(e => console.log(e))
     session.endDialog();
   }
 ])
