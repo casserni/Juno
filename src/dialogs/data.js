@@ -26,9 +26,15 @@ let fetchCurrencies = () => {
 
 let fetchExchangeRate = (baseSymbol, newSymbol) => {
   return new Promise((resolve, reject) => {
+    baseSymbol = baseSymbol.toUpperCase()
+    newSymbol = newSymbol.toUpperCase()
     fetchData(`latest?base=${baseSymbol}&symbols=${newSymbol}`)
     .then(data => {
-      resolve(data.rates[newSymbol].toString())
+      if(data.rates !== undefined) {
+        resolve(`1.00 ${baseSymbol} = ${data.rates[newSymbol]} ${newSymbol}`)
+      } else {
+        resolve(`I'm sorry, one or more of those currencies is currently not supported. Type "list all currencies" to see all that are available`)
+      }
     })
   })
 }
