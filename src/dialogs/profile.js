@@ -1,4 +1,5 @@
 import bot from '../controllers/bot';
+import builder from 'botbuilder'
 
 bot.dialog('/profile', [
   function (session) {

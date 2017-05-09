@@ -13,13 +13,9 @@ let fetchCurrencies = () => {
   return new Promise((resolve, reject)=>{
     fetchData('latest?base=USD')
     .then(data => {
-      let response = `\n\tLook at all of our supported currencies!\n`;
       let currencies = Object.keys(data.rates);
       currencies.push('USD');
-      currencies.sort().forEach((currency)=>{
-        response += `\n\t- ${currency}`;
-      });
-      resolve(response);
+      resolve(currencies.sort());
     });
   });
 };
