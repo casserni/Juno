@@ -33,7 +33,7 @@ let fetchExchangeRate = (baseSymbol, newSymbol) => {
       if(data.rates !== undefined) {
         resolve(`1.00 ${baseSymbol} = ${data.rates[newSymbol]} ${newSymbol}`);
       } else {
-        resolve(`I'm sorry, one or more of those currencies is currently not supported. Type "list all currencies" to see all that are available`);
+        resolve(`I'm sorry, one or more of those currencies is currently not supported. Type "list all currencies" to see all that are available!`);
       }
     });
   });
