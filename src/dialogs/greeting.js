@@ -1,15 +1,11 @@
 import bot from '../controllers/bot';
+import verifyUserProfile from './profile';
 
 bot.dialog('/greeting', [
-  function (session, args, next) {
-    if (!session.userData.name) {
-        session.beginDialog('/profile');
-    } else {
-        next();
-    }
-  },
+  verifyUserProfile,
   function (session) {
-    session.send(`Hey ${session.userData.name}!`);
+    console.log(session.message.ctx)
+    session.send(`Hey ${session.message.ctx.user.firstName}!`);
     session.message.utu.intent('Greeting').catch(e => console.log(e));
     session.endDialog();
   }

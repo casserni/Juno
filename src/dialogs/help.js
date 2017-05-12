@@ -7,8 +7,8 @@ bot.dialog('/help', [
       `
       Here are a few of the things that I can help you with:
       - list currencies
-      - convert
-      - help
+      - convert CUR1 to CUR2
+      - change name
       `
     );
     session.message.utu.intent('Help')

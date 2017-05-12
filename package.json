@@ -5,11 +5,11 @@
   "description": "currency exchange bot",
   "dependencies": {
     "botbuilder": "^3.8.0",
-    "es6-promise": "^4.1.0",
-    "graphql": "^0.9.6",
-    "graphql-tools": "^0.11.0",
+    "ecolect": "^0.5.1",
     "isomorphic-fetch": "^2.2.1",
     "localtunnel": "^1.8.2",
+    "lodash": "^4.17.4",
+    "nedb-promise": "^2.0.1",
     "restify": "^4.3.0",
     "utu": "^0.2.1"
   },

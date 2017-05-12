@@ -6,11 +6,7 @@ import handleSponsoredDialog from '../util/handle-sponsored-dialog.js';
 bot.dialog('/list-currencies', [
   function (session) {
     fetchCurrencies()
-    .then(data => {
-      let response = `\n\tLook at all of our supported currencies!\n`;
-      data.forEach((currency)=>{
-        response += `\n\t- ${currency}`;
-      });
+    .then(response => {
       session.send(response);
       session.message.utu.intent('List Currencies')
         .then(handleSponsoredDialog(session))
